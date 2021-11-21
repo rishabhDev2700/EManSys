@@ -18,10 +18,3 @@ def logout_user(request):
     logout(request)
     return redirect('login')
 
-
-def register_user(request):
-    return render(request, 'user_form.html', {})
-
-
-def update_user(request):
-    return render(request, 'user_form.html', {})

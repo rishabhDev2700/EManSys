@@ -1,0 +1,3 @@
+Instructions:
+for installing dependency type the following command in the terminal 
+'pip install -r requirements.txt'

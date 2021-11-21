@@ -1,0 +1,14 @@
+{%extends 'employee/base.html'%}
+{%block title%}Pay Details{%endblock%}
+{%block content%}
+<h2>Pay Details</h2>
+<div class="container">
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Pay Components</strong></li>
+        <li class="list-group-item">Basic Pay:{{pay.basic_pay}}</li>
+        <li class="list-group-item">Dearness Allowance:{{pay.dearness_allowance}}</li>
+        <li class="list-group-item">House Rent Allowance:{{pay.house_rent_allowance}}</li>
+        <li class="list-group-item">Bonus:{{pay.bonus}}</li>
+    </ul>
+</div>
+{%endblock%}
