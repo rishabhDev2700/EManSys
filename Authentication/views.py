@@ -10,7 +10,10 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')
+            if user.is_admin:
+                return redirect('dashboard')
+            else:
+                return redirect('home')
     return render(request, "login.html", {})
 
 
