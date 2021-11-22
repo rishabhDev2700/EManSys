@@ -74,9 +74,10 @@
 </head>
 
 <body>
-  <form action="" method="post">
+  <form action="{%url 'login'%}" method="post">
     <h1>Login Form</h1>
     <div class="formcontainer">
+      {%csrf_token%}
       <hr />
       <div class="container">
         <label for="username"><strong>Username</strong></label>

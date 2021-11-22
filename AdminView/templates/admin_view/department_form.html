@@ -1,8 +1,8 @@
 {%extends 'admin_view/base.html'%}
-{%block title%}{%endblock%}
+{%block title%}Department Form{%endblock%}
 {%block content%}
-<div class="container bg-light py-2 mx-auto" style="width:60rem; text-align:center">
-    <h2 class="h1 my-5">Enter The details</h2>
+<div class="container bg-light mx-auto" style="width:60rem; text-align:center">
+    <h2 class="h1 my-5">Department Details</h2>
     <form action="" method="post">
         {%csrf_token%}
         {%for field in form%}

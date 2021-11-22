@@ -1,15 +1,22 @@
 {%extends 'admin_view/base.html'%}
 {%block title%}Pay Grades{%endblock%}
 {%block content%}
-<div class="container">
+<div class="container bg-light my-3">
     <h2 class="h2">Salary Components</h2>
+    <div class="container my-5">
+        <a class="btn btn-warning" href="{%url 'pay_grade_form'%}">Add New Pay Grade</a>
+    </div><div class="container" style="display:flex; flex-direction:row;flex-wrap:wrap;">
+
     {%for paygrade in pay_grades%}
-    <label class="title">{{paygrade.name}}</label>
-    <div class="subtitle">Base Pay: {{paygrade.description}}</div>
-    <div class="subtitle">House Rent Allowance: {{paygrade.house_rent_allowance}}</div>
-    <div class="subtitle">Dearness Allowance: {{paygrade.dearness_allowance}}</div>
-    <div class="subtitle">Bonus : {{paygrade.bonus}}</div>
-    <hr>
+    <div class="card p-2 m-3" style="width:35rem; background-color:whitesmoke;"><div class="title">{{paygrade.name}}</div>
+        <div class="subtitle">Base Pay: {{paygrade.base_pay}}</div>
+        <div class="subtitle">House Rent Allowance: {{paygrade.house_rent_allowance}}</div>
+        <div class="subtitle">Dearness Allowance: {{paygrade.dearness_allowance}}</div>
+        <div class="subtitle">Bonus : {{paygrade.bonus}}</div>
+        <hr>
+        <a class="btn btn-danger" href="{%url 'pay_grade_delete' paygrade.id %}">Delete</a>
+    </div>
     {%endfor%}
+</div>
 </div>
 {%endblock%}

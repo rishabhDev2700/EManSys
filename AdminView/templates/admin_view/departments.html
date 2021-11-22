@@ -1,12 +1,21 @@
 {%extends 'admin_view/base.html'%}
 {%block title%}Departments{%endblock%}
 {%block content%}
-<div class="container">
-    <div class="h2">Departments</div>
-    {%for department in departments%}
-    <label class="title">{{department.name}}</label>
-    <div class="subtitle">{{department.description}}</div>
+<div class="container bg-light">
+    <div class="h2 p-5 m-auto bg-success">Departments</div>
+    <div class="container my-5">
+        <a class="btn btn-warning" href="{%url 'department_form'%}">Add New Department</a>
+
+    </div>
+    <div style="display:flex;flex-direction:row;flex-wrap:wrap;">
+        {%for department in departments%}
+    <div class="card m-2 p-2 py-4 my-3" style="width:32rem; background-color:whitesmoke;color:darkgreen">
+        <label class="title fw-bold fs-4">{{department.department_name}}</label>
+    <div class="subtitle fs-5">{{department.department_description}}</div>
+    <a class="btn btn-danger" href="/departments/delete/{{department.id}}">Delete</a>
     <hr>
+    </div>
     {%endfor%}
+    </div>
 </div>
 {%endblock%}

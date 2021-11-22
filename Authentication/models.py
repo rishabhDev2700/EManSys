@@ -10,6 +10,9 @@ class Department(models.Model):
     department_name = models.CharField(max_length=20)
     department_description = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.department_name
+
 
 class PayGrade(models.Model):
     objects = models.Manager()
@@ -18,6 +21,9 @@ class PayGrade(models.Model):
     house_rent_allowance = models.IntegerField()
     dearness_allowance = models.IntegerField()
     bonus = models.FloatField()
+
+    def __str__(self):
+        return self.name
 
 
 class User(AbstractUser):
@@ -36,7 +42,6 @@ class User(AbstractUser):
     date_joined = models.DateTimeField(default=timezone.now)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     pay_grade = models.ForeignKey(PayGrade, on_delete=models.SET_NULL, null=True)
-    objects = models.Manager()
 
     def __str__(self):
         return self.username
