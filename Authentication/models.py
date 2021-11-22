@@ -6,11 +6,14 @@ from django.utils import timezone
 
 
 class Department(models.Model):
+    objects = models.Manager()
     department_name = models.CharField(max_length=20)
     department_description = models.CharField(max_length=50)
 
 
 class PayGrade(models.Model):
+    objects = models.Manager()
+    name = models.CharField(max_length=20, default=None)
     base_pay = models.IntegerField()
     house_rent_allowance = models.IntegerField()
     dearness_allowance = models.IntegerField()
@@ -33,6 +36,7 @@ class User(AbstractUser):
     date_joined = models.DateTimeField(default=timezone.now)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     pay_grade = models.ForeignKey(PayGrade, on_delete=models.SET_NULL, null=True)
+    objects = models.Manager()
 
     def __str__(self):
         return self.username

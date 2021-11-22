@@ -1,0 +1,15 @@
+{%extends 'admin_view/base.html'%}
+{%block title%}Pay Grades{%endblock%}
+{%block content%}
+<div class="container">
+    <h2 class="h2">Salary Components</h2>
+    {%for paygrade in pay_grades%}
+    <label class="title">{{paygrade.name}}</label>
+    <div class="subtitle">Base Pay: {{paygrade.description}}</div>
+    <div class="subtitle">House Rent Allowance: {{paygrade.house_rent_allowance}}</div>
+    <div class="subtitle">Dearness Allowance: {{paygrade.dearness_allowance}}</div>
+    <div class="subtitle">Bonus : {{paygrade.bonus}}</div>
+    <hr>
+    {%endfor%}
+</div>
+{%endblock%}
