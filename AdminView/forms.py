@@ -28,3 +28,9 @@ class DepartmentForm(ModelForm):
     class Meta:
         model = Department
         fields = '__all__'
+
+
+class DepartmentUpdateForm(DepartmentForm):
+    class Meta:
+        model = Department
+        exclude = ('password', 'confirm_password')

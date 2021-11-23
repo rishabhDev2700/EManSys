@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    {%load static%}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +11,11 @@
     <title>{%block title%}{%endblock%}</title>
 </head>
 
-<body class="bg-dark">
+<body class="bg-secondary">
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand fw-light fs-3 px-4" href="{%url 'dashboard'%}">EManSys</a>
+                <a class="navbar-brand fw-light fs-3 px-4" href="{%url 'dashboard'%}"><img src="{%static 'cover.png'%}" width="350px" alt="EManSys"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -23,19 +24,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{%url 'dashboard'%}">Home</a>
+                            <a class="nav-link p-3 active border border-4 border-secondary" aria-current="page" href="{%url 'dashboard'%}">Home</a>
                         </li>
                         <li class="nav-item px-2 mx-2">
-                            <a class="nav-link" href="{%url 'register'%}">Add User</a>
+                            <a class="nav-link p-3 active border border-4 border-secondary" href="{%url 'register'%}">Add User</a>
                         </li>
                         <li class="nav-item px-2 mx-2">
-                            <a class="nav-link" href="{%url 'departments'%}">Departments</a>
+                            <a class="nav-link p-3 active border border-4 border-secondary" href="{%url 'departments'%}">Departments</a>
                         </li>
                         <li class="nav-item px-2 mx-2">
-                            <a class="nav-link" href="{%url 'pay_grades'%}">Pay Grades</a>
+                            <a class="nav-link p-3 active border border-4 border-secondary" href="{%url 'pay_grades'%}">Pay Grades</a>
                         </li>
                         <li class="nav-item px-2 mx-2">
-                            <a class="btn btn-danger mx-5" href="{%url 'logout'%}">Logout</a>
+                            <a class="btn btn-danger mx-4 p-3 px-5 " href="{%url 'logout'%}">Logout</a>
                         </li>
                     </ul>
                 </div>

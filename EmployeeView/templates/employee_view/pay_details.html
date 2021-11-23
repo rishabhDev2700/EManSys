@@ -1,14 +1,22 @@
 {%extends 'employee_view/base.html'%}
 {%block title%}Pay Details{%endblock%}
 {%block content%}
-<h2>Pay Details</h2>
 <div class="container">
-    <ul class="list-group">
-        <li class="list-group-item"><strong>Pay Components</strong></li>
-        <li class="list-group-item">Basic Pay:{{pay.basic_pay}}</li>
-        <li class="list-group-item">Dearness Allowance:{{pay.dearness_allowance}}</li>
-        <li class="list-group-item">House Rent Allowance:{{pay.house_rent_allowance}}</li>
-        <li class="list-group-item">Bonus:{{pay.bonus}}</li>
+    <ul class="list-group card mt-5 border border-2 border-dark">
+        <h2 class="h3 my-4 py-3 px-5 mx-2 fs-1 fw-bold bg-secondary border border-primary border-2">Pay Details</h2>
+        <div class="m-2 p-4">
+            <li class="list-group-item border border-info border-2"><strong class="h2 fw-light fs-1">Pay
+                Components</strong>
+            </li>
+            <li class="list-group-item my-3 p-2"><strong class="card-title">Basic Pay:</strong> {{pay.base_pay}}</li>
+            <li class="list-group-item my-3 p-2"><strong class="card-title">Dearness Allowance:</strong>
+                {{pay.dearness_allowance}}
+            </li>
+            <li class="list-group-item my-3 p-2"><strong class="card-title">House Rent Allowance:</strong>
+                {{pay.house_rent_allowance}}
+            </li>
+            <li class="list-group-item my-3 p-2"><strong class="card-title">Bonus:</strong> {{pay.bonus}}</li>
+        </div>
     </ul>
 </div>
 {%endblock%}

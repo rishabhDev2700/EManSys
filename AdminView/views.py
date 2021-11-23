@@ -1,11 +1,12 @@
-from AdminView.decorators import check_if_admin
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
-# Create your views here.
+from AdminView.decorators import check_if_admin
 from AdminView.forms import UserRegistrationForm, UserUpdateForm, DepartmentForm, PayGradeForm
 from Authentication.models import User, Department, PayGrade
+
+
+# Create your views here.
 
 
 @login_required(login_url='login')
@@ -26,29 +27,30 @@ def register_user(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            redirect('dashboard')
+            return redirect('dashboard')
     form = UserRegistrationForm()
     return render(request, 'admin_view/user_form.html', {'form': form})
 
 
 @login_required(login_url='login')
 @user_passes_test(check_if_admin)
-def update_user(request):
+def update_user(request, pk):
     if request.method == 'POST':
-        form = UserUpdateForm(request.POST)
+        form = UserUpdateForm(request.POST, instance=User.objects.get(pk=pk))
         if form.is_valid():
             form.save()
             return redirect('dashboard')
         else:
             return HttpResponse("There was some problem please try again!")
-    form = UserUpdateForm(instance=request.user)
+    user = User.objects.get(pk=pk)
+    form = UserUpdateForm(instance=user)
     return render(request, 'admin_view/user_form.html', {'form': form})
 
 
 @login_required(login_url='login')
 @user_passes_test(check_if_admin)
-def delete_user(request, id):
-    user = User.objects.get(pk=id)
+def delete_user(request, pk):
+    user = User.objects.get(pk=pk)
     user.delete()
     return redirect('dashboard')
 
@@ -74,10 +76,25 @@ def department_form(request):
         form = DepartmentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('departments')
         else:
             return HttpResponse("Error Occurred")
     form = DepartmentForm()
+    return render(request, 'admin_view/department_form.html', {'form': form})
+
+
+@login_required(login_url='login')
+@user_passes_test(check_if_admin)
+def department_update_form(request, pk):
+    if request.method == 'POST':
+        form = DepartmentForm(request.POST, instance=Department.objects.get(pk=pk))
+        if form.is_valid():
+            form.save()
+            return redirect('departments')
+        else:
+            return HttpResponse("Error Occurred")
+    department = Department.objects.get(pk=pk)
+    form = DepartmentForm(instance=department)
     return render(request, 'admin_view/department_form.html', {'form': form})
 
 
@@ -88,7 +105,7 @@ def pay_grade_form(request):
         form = PayGradeForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('pay_grades')
         else:
             return HttpResponse("Error Occurred")
     form = PayGradeForm()
@@ -97,15 +114,30 @@ def pay_grade_form(request):
 
 @login_required(login_url='login')
 @user_passes_test(check_if_admin)
-def delete_department(request, id):
-    department = Department.objects.get(pk=id)
+def pay_grade_update_form(request, pk):
+    if request.method == 'POST':
+        form = PayGradeForm(request.POST, instance=PayGrade.objects.get(pk=pk))
+        if form.is_valid():
+            form.save()
+            return redirect('pay_grades')
+        else:
+            return HttpResponse("Error Occurred")
+    pay_grade = PayGrade.objects.get(pk=pk)
+    form = PayGradeForm(instance=pay_grade)
+    return render(request, "admin_view/pay_form.html", {"form": form})
+
+
+@login_required(login_url='login')
+@user_passes_test(check_if_admin)
+def delete_department(request, pk):
+    department = Department.objects.get(pk=pk)
     department.delete()
     return redirect('departments')
 
 
 @login_required(login_url='login')
 @user_passes_test(check_if_admin)
-def delete_pay_grade(request, id):
-    pay_grade = PayGrade.objects.get(pk=id)
+def delete_pay_grade(request, pk):
+    pay_grade = PayGrade.objects.get(pk=pk)
     pay_grade.delete()
     return redirect('pay_grades')
